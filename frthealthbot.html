@@ -1,1 +1,245 @@
-<iframe src='https://webchat.botframework.com/embed/health-bot-lvvvppc?s=UYO-9iqjgfM.CoO9nZEPJtN20_b7UpefDX8lQXXslBfqjZiRzhswWpc' style='min-width: 400px; width: 100%; min-height: 500px;'></iframe> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #chatbox {
+            max-width: 600px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            max-height: 600px;
+        }
+
+        .chat-log {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+
+        .chat-entry {
+            display: flex;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+            .chat-entry:hover {
+                transform: translateX(5px);
+            }
+
+            .chat-entry.user {
+                justify-content: flex-end;
+            }
+
+            .chat-entry.bot {
+                justify-content: flex-start;
+            }
+
+            .chat-entry .message {
+                padding: 12px 20px;
+                border-radius: 15px;
+                max-width: 75%;
+                background: #f1f1f1;
+                color: #333;
+                font-size: 16px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .chat-entry.user .message {
+                background: #007bff;
+                color: #ffffff;
+            }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+                transform: scale(1.05);
+            }
+
+            button:active {
+                background-color: #004494;
+            }
+
+        .hidden {
+            display: none;
+        }
+
+        #restart-container {
+            margin-top: 20px;
+        }
+
+        .chat-log::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-log::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+
+            .chat-log::-webkit-scrollbar-thumb:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="chatbox">
+        <div class="chat-log" id="chat-log">
+            <div class="chat-entry bot">
+                <div class="message">Hello! I’m here to help you with your health concerns. Can I ask you a few questions?</div>
+            </div>
+        </div>
+        <div id="button-container" class="button-container">
+            <button onclick="handleAnswer('yes')">Yes</button>
+            <button onclick="handleAnswer('no')">No</button>
+        </div>
+        <div id="restart-container" class="button-container hidden">
+            <button onclick="restartConversation()">Restart Conversation</button>
+        </div>
+    </div>
+
+    <script>
+        let state = 0;
+        const responses = {
+            0: "Do you have any of the following symptoms: fever, cough, or shortness of breath?",
+            1: "Do you have a new loss of taste or smell, or have you felt unusually fatigued?",
+            2: "Do you have a sore throat, congestion, or runny nose?",
+            3: "Do you have nausea, vomiting, or diarrhea?",
+            4: "Based on your symptoms, it seems you might have COVID-19. Please get tested and follow public health guidelines.",
+            5: "Your symptoms may suggest a common cold or flu. If symptoms persist or worsen, please consult a healthcare provider.",
+            6: "You might have a sore throat or sinus infection. Consider rest and hydration.",
+            7: "You might have a stomach bug. Stay hydrated and consult a doctor if symptoms persist.",
+            8: "Your symptoms do not strongly indicate COVID-19. Please consult a healthcare provider for a proper diagnosis."
+        };
+
+        let userAnswers = [];
+
+        function startConversation() {
+            const chatLog = document.getElementById('chat-log');
+            const buttonContainer = document.getElementById('button-container');
+
+            chatLog.innerHTML += `<div class="chat-entry bot"><div class="message">${responses[0]}</div></div>`;
+            buttonContainer.classList.remove('hidden'); // Show buttons for the first question
+            document.getElementById('restart-container').classList.add('hidden'); // Hide restart button
+        }
+
+        function handleAnswer(answer) {
+            const chatLog = document.getElementById('chat-log');
+            const buttonContainer = document.getElementById('button-container');
+
+            chatLog.innerHTML += `<div class="chat-entry user"><div class="message">${answer.charAt(0).toUpperCase() + answer.slice(1)}</div></div>`;
+
+            userAnswers.push(answer);
+            buttonContainer.classList.add('hidden'); // Hide buttons during response processing
+
+            setTimeout(() => {
+                let botResponse = "";
+
+                switch (state) {
+                    case 0:
+                        botResponse = responses[1];
+                        state++;
+                        break;
+                    case 1:
+                        botResponse = responses[2];
+                        state++;
+                        break;
+                    case 2:
+                        botResponse = responses[3];
+                        state++;
+                        break;
+                    case 3:
+                        botResponse = determineDiagnosis();
+                        state = 0; // Reset the state after providing diagnosis
+                        document.getElementById('restart-container').classList.remove('hidden'); // Show restart button
+                        break;
+                    default:
+                        botResponse = responses[0];
+                        state = 1;
+                        break;
+                }
+
+                chatLog.innerHTML += `<div class="chat-entry bot"><div class="message">${botResponse}</div></div>`;
+                chatLog.scrollTop = chatLog.scrollHeight;
+                buttonContainer.classList.remove('hidden'); // Show buttons again after response
+            }, 1000);
+        }
+
+        function determineDiagnosis() {
+            // Normalize answers for easier comparison
+            const normalizedAnswers = userAnswers.map(answer => answer === "yes" ? "yes" : "no");
+
+            // Define symptom patterns
+            const covidSymptoms = ["yes", "yes", "yes", "yes"];
+            const fluSymptoms = ["yes", "yes", "yes", "no"];
+            const coldSymptoms = ["no", "no", "yes", "no"];
+            const stomachBugSymptoms = ["no", "no", "no", "yes"];
+
+            // Check against symptoms
+            if (arraysEqual(normalizedAnswers, covidSymptoms)) {
+                return responses[4];
+            } else if (arraysEqual(normalizedAnswers, fluSymptoms)) {
+                return responses[5];
+            } else if (arraysEqual(normalizedAnswers, coldSymptoms)) {
+                return responses[6];
+            } else if (arraysEqual(normalizedAnswers, stomachBugSymptoms)) {
+                return responses[7];
+            } else {
+                return responses[8];
+            }
+        }
+
+        function arraysEqual(arr1, arr2) {
+            if (arr1.length !== arr2.length) return false;
+            for (let i = 0; i < arr1.length; i++) {
+                if (arr1[i] !== arr2[i]) return false;
+            }
+            return true;
+        }
+
+        function restartConversation() {
+            // Refresh the page to restart the conversation
+            location.reload();
+        }
+
+        // Start the conversation when the page loads
+        window.onload = startConversation;
+    </script>
+</body>
+</html>
