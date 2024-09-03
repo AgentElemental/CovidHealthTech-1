@@ -1,4 +1,4 @@
-# CovidHealthTech
+# SehatSaathi
 This web-based HEALTHCARE application has been developed for the accomplishment of the Future Ready Talent Internship program launched by Microsoft, Future Skills Prime, Quess, Github, and EY.
 
 ## DESCRIPTION:
@@ -10,9 +10,7 @@ This web application addresses the COVID-19 information dissemination challenges
 2. Azure Health Bot
 
 ## Project Link
-https://calm-sand-0cc616700.5.azurestaticapps.net/
-The changes will be done in this link:
-https://CovidHealthTech.netlify.app/
+https:/sehatsaathi.netlify.app/
 
 ## Project video link
 https://youtu.be/CRVKoQPsQ7Y
@@ -33,7 +31,7 @@ https://youtu.be/CRVKoQPsQ7Y
 ###  HEALTH BOT SCENARIOS
 <img width="925" alt="SYNARIOS " src="https://github.com/mnagajaideepchowdary/CovidHealthTech/assets/168766784/4d795d75-34a5-4355-a422-86bc50c0f4f6">
 
-##  CovidHealthTech WEBSITE
+##  SehatSaathi WEBSITE
 
 ### HOME PAGE
 <img width="929" alt="HOME" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi.png">
