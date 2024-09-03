@@ -111,53 +111,19 @@
     <iframe src='https://webchat.botframework.com/embed/health-bot-lvvvppc?s=UYO-9iqjgfM.CoO9nZEPJtN20_b7UpefDX8lQXXslBfqjZiRzhswWpc' style='min-width: 400px; width: 100%; min-height: 500px;'></iframe> 
     <section class="w3l-stats-main py-5">
         <div class="drop-down-container">
-            <select id="cases-select">
-                <option value="covid-stats-active">Active Cases</option>
-                <option value="covid-stats-recoverd">Recovered Cases</option>
-                <option value="covid-stats-deaths">Total Deaths</option>
-                <option value="covid-stats-deaths">Vaccinations</option>
-            </select>
-            <button id="load-cases-button" onclick="loadCases()">View</button>
-        </div>
-        <div id="stats-container"></div>
-    <div class="container py-lg-5 py-2">
-        <div class="row stats-con">
-            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                <div class="icon stat-icon">
-                    <i class="fab fa-keycdn"></i>
-                </div>
-                <div id="covid-stats-active">
-                    Loading...
-                </div>
-                <h4>Active Cases</h4>
-            </div>
-            <div class="col-lg-3 col-6 stats_info counter_grid1 text-left mt-lg-0 mt-5">
-                <div class="icon stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div id="covid-stats-recoverd">
-                    Loading...
-                </div>
-                <h4>Recovered Cases</h4>
-            </div>
-            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                <div class="icon stat-icon">
-                    <i class="fas fa-skull-crossbones"></i>
-                </div>
-                <div id="covid-stats-deaths">
-                    Loading...
-                </div>
-                <h4>Total Deaths</h4>
-            </div>
-            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                <div class="icon stat-icon">
-                    <i class="fas fa-crutch"></i>
-                </div>
-                <p class="counter">13270170332</p>
-                <h4>Vaccination</h4>
-            </div>
-        </div>
-    </div>
+    <select id="symptoms-select">
+        <option value="fever">Fever</option>
+        <option value="cough">Cough</option>
+        <option value="cold">Cold</option>
+        <option value="dengue">Dengue</option>
+        <option value="diabetes">Diabetes</option>
+    </select>
+    <button id="load-symptoms-button" onclick="loadSymptoms()">View</button>
+</div>
+
+<div id="info-container">
+    <!-- The boxes will be dynamically inserted here -->
+</div>
 </section>
     <!--//home-stats-->
     <!-- home page about section -->
@@ -462,79 +428,58 @@
         };
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        function loadCases() {
-            // Get the selected value from the dropdown
-            const selectElement = document.getElementById('cases-select');
-            const selectedValue = selectElement.value;
-
-            // Define the HTML for each option
-            const htmlContent = {
-                'covid-stats-active': `
-                    <div class="container py-lg-5 py-2">
-                        <div class="row stats-con">
-                            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                                <div class="icon stat-icon">
-                                    <i class="fab fa-keycdn"></i>
-                                </div>
-                                <div id="covid-stats-active">
-                                    Loading...
-                                </div>
-                                <h4>Active Cases</h4>
-                            </div>
-                        </div>
-                    </div>
-                `,
-                'covid-stats-recoverd': `
-                    <div class="container py-lg-5 py-2">
-                        <div class="row stats-con">
-                            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                                <div class="icon stat-icon">
-                                    <i class="fab fa-keycdn"></i>
-                                </div>
-                                <div id="covid-stats-recoverd">
-                                    Loading...
-                                </div>
-                                <h4>Recovered Cases</h4>
-                            </div>
-                        </div>
-                    </div>
-                `,
-                'covid-stats-deaths': `
-                    <div class="container py-lg-5 py-2">
-                        <div class="row stats-con">
-                            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                                <div class="icon stat-icon">
-                                    <i class="fab fa-keycdn"></i>
-                                </div>
-                                <div id="covid-stats-deaths">
-                                    Loading...
-                                </div>
-                                <h4>Total Deaths</h4>
-                            </div>
-                        </div>
-                    </div>
-                `,
-                'covid-stats-vaccinations': `
-                    <div class="container py-lg-5 py-2">
-                        <div class="row stats-con">
-                            <div class="col-lg-3 col-6 stats_info counter_grid text-left mt-lg-0 mt-5">
-                                <div class="icon stat-icon">
-                                    <i class="fas fa-crutch"></i>
-                                </div>
-                                <p class="counter">13270170332</p>
-                                <h4>Vaccination</h4>
-                            </div>
-                        </div>
-                    </div>
-                `
-            };
-
-            // Get the container to display the selected content
-            const statsContainer = document.getElementById('stats-container');
-
-            // Update the content of the container based on the selected option
-            statsContainer.innerHTML = htmlContent[selectedValue] || 'Please select an option';
+function loadSymptoms() {
+    const diseaseInfo = {
+        fever: {
+            disease: "Fever",
+            precautions: "Stay hydrated, rest, and monitor your temperature.",
+            prevention: "Avoid contact with infected individuals and maintain good hygiene.",
+            medication: "Paracetamol or ibuprofen to reduce fever, fluids to stay hydrated."
+        },
+        cough: {
+            disease: "Cough",
+            precautions: "Cover your mouth when coughing, stay hydrated.",
+            prevention: "Avoid smoking and allergens, maintain good air quality.",
+            medication: "Cough syrup, lozenges, or honey for relief."
+        },
+        cold: {
+            disease: "Cold",
+            precautions: "Stay warm, drink plenty of fluids, rest well.",
+            prevention: "Wash hands frequently, avoid close contact with infected individuals.",
+            medication: "Over-the-counter cold remedies, decongestants, and rest."
+        },
+        dengue: {
+            disease: "Dengue",
+            precautions: "Avoid mosquito bites, use mosquito repellent.",
+            prevention: "Eliminate standing water, use mosquito nets.",
+            medication: "Pain relievers like acetaminophen, fluids, and rest."
+        },
+        diabetes: {
+            disease: "Diabetes",
+            precautions: "Monitor blood sugar levels, follow a healthy diet.",
+            prevention: "Maintain a healthy weight, exercise regularly.",
+            medication: "Insulin, oral hypoglycemics, and a balanced diet."
         }
+    };
+
+    const selectedSymptom = document.getElementById("symptoms-select").value;
+    const info = diseaseInfo[selectedSymptom];
+
+    // Clear any previous info
+    const infoContainer = document.getElementById("info-container");
+    infoContainer.innerHTML = '';
+
+    // Create and append the boxes
+    const boxes = ['disease', 'precautions', 'prevention', 'medication'];
+
+    boxes.forEach((box) => {
+        const boxElement = document.createElement('div');
+        boxElement.className = 'info-box';
+        boxElement.innerHTML = `<h3>${box.charAt(0).toUpperCase() + box.slice(1)}</h3><p>${info[box]}</p>`;
+        infoContainer.appendChild(boxElement);
+    });
+}
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
         async function getCovidStatistics() {
