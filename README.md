@@ -36,7 +36,7 @@ https://youtu.be/CRVKoQPsQ7Y
 ##  CovidHealthTech WEBSITE
 
 ### HOME PAGE
-<img width="929" alt="HOME" src="https://github.com/AgentElemental/SehatSaathi/resources/screenshorts/SehatSaathi.png">
+<img width="929" alt="HOME" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi.png">
 
 ### ABOUT PAGE
 <img width="925" alt="ABOUT" src="https://github.com/mnagajaideepchowdary/CovidHealthTech/assets/168766784/64098aa8-b670-44a8-bf8a-28dd1e8a711d">
