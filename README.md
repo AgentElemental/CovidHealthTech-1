@@ -10,7 +10,7 @@ This web application addresses the COVID-19 information dissemination challenges
 2. Azure Health Bot
 
 ## Project Link
-https:/sehatsaathi.netlify.app/
+https://sehatsaathi.netlify.app/
 
 ## Project video link
 https://youtu.be/CRVKoQPsQ7Y
