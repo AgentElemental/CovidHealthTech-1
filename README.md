@@ -11,6 +11,8 @@ This web application addresses the COVID-19 information dissemination challenges
 
 ## Project Link
 https://calm-sand-0cc616700.5.azurestaticapps.net/
+The changes will be done in this link:
+https://covidhealthtech.netlify.app/
 
 ## Project video link
 https://youtu.be/CRVKoQPsQ7Y
