@@ -2765,8 +2765,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color:#eb2226;
-  border-color:#eb2226;
+  background-color:#0dd2e0;
+  border-color:#0dd2e0;
 }
 
 .btn-primary:hover {
@@ -17140,7 +17140,7 @@ a.text-dark:focus {
 }
 
 :root {
-  --primary-color: #eb2226;
+  --primary-color: #0dd2e0;
   --secondary-color: #213364;
   --font-color:#777;
   --bg-color: #fff;
@@ -17159,7 +17159,7 @@ a.text-dark:focus {
 }
 
 [data-theme="dark"] {
-  --primary-color: #eb2226;
+  --primary-color: #0dd2e0;
   --secondary-color: #213364;
   --font-color: #c2c2c2;
   --bg-color: #151421;
