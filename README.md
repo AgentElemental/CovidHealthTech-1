@@ -36,10 +36,10 @@ https://youtu.be/CRVKoQPsQ7Y
 ##  CovidHealthTech WEBSITE
 
 ### HOME PAGE
-<img width="929" alt="HOME" src="https://raw.githubusercontent.com/AgentElemental/CovidHealthTech/main/resources/screenshorts/SehatSaathi.png">
+<img width="929" alt="HOME" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi.png">
 
 ### CONTACT US PAGE
-<img width="922" alt="CONTACT" src="https://raw.githubusercontent.com/AgentElemental/CovidHealthTech/main/resources/screenshorts/SehatSaathi-Contact.png">
+<img width="922" alt="CONTACT" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi-Contact.png">
 
 ### HEALTH BOT
 <img width="932" alt="HEALTHBOT" src="https://github.com/mnagajaideepchowdary/CovidHealthTech/assets/168766784/83a2c91c-5a7a-4cc9-a213-47c5f3a61d96">
