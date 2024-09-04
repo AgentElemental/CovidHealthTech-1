@@ -12,9 +12,6 @@ This web application addresses the COVID-19 information dissemination challenges
 ## Project Link
 https://sehatsaathi.netlify.app/
 
-## Project video link
-https://youtu.be/CRVKoQPsQ7Y
-
 ## Screenshots
 ### AZURE HOME PAGE
 <img width="928" alt="frt home page" src="https://github.com/mnagajaideepchowdary/CovidHealthTech/assets/168766784/79d36941-15a9-4a1a-a65b-536ea4968f48">
