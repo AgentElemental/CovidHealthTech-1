@@ -37,7 +37,7 @@ https://sehatsaathi.netlify.app/
 <img width="922" alt="CONTACT" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi-Contact.png">
 
 ### HEALTH BOT
-<img width="932" alt="HEALTHBOT" src="(https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi-Health Bot.png">
+<img width="932" alt="HEALTHBOT" src="https://raw.githubusercontent.com/AgentElemental/SehatSaathi/main/resources/screenshorts/SehatSaathi-Health%20Bot.png">
 
 ## Features and Functionalities 
 - Creative visual effects.
