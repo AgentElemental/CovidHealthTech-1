@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -173,23 +172,35 @@
     </header>
     <!--/header-->
 
-    <!-- hero slider Start -->
-    <div class="banner-wrap">
-        <div class="banner-slider">
-            <!-- hero slide start -->
-            <div class="banner-slide bg1">
-                <div class="container">
-                    <div class="hero-content">
-                        <h1 data-animation="flipInX" data-delay="0.8s" data-color="#fff">
-                            Your Health, Our Commitment Caring for Life, Every Day</h1>
-                        <p data-animation="fadeInDown" class="mt-4">Healthcare is the maintenance and improvement of health through prevention, diagnosis, treatment, and recovery of illness, injury, and other physical and mental impairments. It encompasses a broad range of services provided by medical professionals, including doctors, nurses, and therapists, and is crucial for enhancing the quality of life.</p>
-                        <div class="cta-btn" data-animation="fadeInUp" data-delay="1s">
-                            <a href="#url" class="btn btn-style btn-primary">Read More</a>
-                        </div>
+
+<!-- hero slider Start -->
+<div class="banner-wrap">
+    <div class="banner-slider">
+        <!-- hero slide start -->
+        <div class="banner-slide bg1">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 data-animation="flipInX" data-delay="0.8s" data-color="#fff">
+                        Your Health, Our Commitment Caring for Life, Every Day
+                    </h1>
+                    <p id="full-content" class="mt-4" style="display: none;">
+                        Healthcare is the maintenance and improvement of health through prevention, diagnosis, treatment, and recovery of illness, injury, and other physical and mental impairments. It encompasses a broad range of services provided by medical professionals, including doctors, nurses, and therapists, and is crucial for enhancing the quality of life.
+                        <br><br>
+                        Healthcare also involves public health efforts, health education, and policies to ensure equitable access to medical services for all individuals. However, disparities persist: in low- and middle-income countries, over *400 million people* lack access to essential health services , underscoring the need for continued efforts toward universal health coverage (UHC).
+                    </p>
+                    <p id="summary-content" class="mt-4">
+                        Healthcare is the maintenance and improvement of health through prevention, diagnosis, treatment, and recovery of illness, injury, and other physical and mental impairments. It encompasses a broad range of services provided by medical professionals, including doctors, nurses, and therapists, and is crucial for enhancing the quality of life.
+                    </p>
+                    <div class="cta-btn" data-animation="fadeInUp" data-delay="1s">
+                        <button id="read-more-btn" class="btn btn-style btn-primary">Read More</button>
                     </div>
                 </div>
-                <div class="hero-overlay"></div>
             </div>
+            <div class="hero-overlay"></div>
+        </div>
+        <!-- hero slide end -->
+    </div>
+</div>
             <!-- hero slide end -->
            
         </div>
@@ -461,6 +472,23 @@
 
     <!--/MENU-JS-->
     <script>
+
+        const readMoreBtn = document.getElementById("read-more-btn");
+    const fullContent = document.getElementById("full-content");
+    const summaryContent = document.getElementById("summary-content");
+
+    readMoreBtn.addEventListener("click", function () {
+        if (fullContent.style.display === "none") {
+            fullContent.style.display = "block";
+            summaryContent.style.display = "none";
+            readMoreBtn.textContent = "Read Less";
+        } else {
+            fullContent.style.display = "none";
+            summaryContent.style.display = "block";
+            readMoreBtn.textContent = "Read More";
+        }
+    });
+        
         $(window).on("scroll", function () {
             var scroll = $(window).scrollTop();
 
